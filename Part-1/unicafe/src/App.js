@@ -22,7 +22,14 @@ const Percentage = (props) => (
 )
 
 //Component that'll print the statistics.
-const StatisticsLine = ({value, text}) => (<div>{text} {value}</div>)
+const StatisticsLine = ({value, text}) => (
+  <tr>
+    <td>
+      {text}
+    </td>
+    <td>{value}</td>
+  </tr>
+)
 
 //Component that'll compute the averagge.
 const Average = ({total, good}) => {
@@ -50,32 +57,32 @@ const Statistics = (props) => {
 
   if(good != 0){
     return (
-      <div>
+      <table>
         <StatisticsLine text='good' value={good}/>
         <StatisticsLine text='neutral' value={neutral}/>
         <StatisticsLine text='bad' value={bad}/>
         <StatisticsLine text='total' value={total}/>
         <Average total={total} good={good}/>
         <Percentage text='positive' percentage={percentage}/>
-      </div>
+      </table>
     )
   }
   else if(good == 0 && (neutral != 0 || bad != 0)){
     return (
-      <div>
+      <table>
         <StatisticsLine text='good' value={good}/>
         <StatisticsLine text='neutral' value={neutral}/>
         <StatisticsLine text='bad' value={bad}/>
         <StatisticsLine text='total' value={total}/>
         <Average total={total} good={good}/>
-      </div>
+      </table>
     )
   }
   else{
     return (
-      <div>
+      <table>
         <StatisticsLine text = "No feedback given."/>
-      </div>
+      </table>
     )
   }
 }
