@@ -1,13 +1,11 @@
 import { useState } from 'react'
 
-//Exercise 1.7) Unicafe Part 2. 
-//            Display the average and the percentage of positive.
+//Exercise 1.9) Unicafe Part 4
+//              Change your application to display statistics only once feed back has been gathered.
 
 //Creating a component that'll create a header.
 const Header = ({title}) => (<h1>{title}</h1>)
 
-//Creating a component to display the variables.
-const Display = ({value, name}) => (<div>{name} {value}</div>)
 
 //Creating a componet that'll create a button.
 const Button = ({handleClick, text}) => (
@@ -23,6 +21,65 @@ const Percentage = (props) => (
   </div>
 )
 
+//Component that'll print the statistics.
+const StatisticsLine = ({value, text}) => (<div>{text} {value}</div>)
+
+//Component that'll compute the averagge.
+const Average = ({total, good}) => {
+  let average = good/total
+  return (
+    <div>
+      Average {average}
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  console.log(props.array.length)
+  let good = props.array[0]
+  let neutral = props.array[1]
+  let bad = props.array[2]
+
+  let total = 0;
+  for(let i=0; i < props.array.length; i++){
+    total += props.array[i];
+  }
+  
+  let average = good/props.array.length
+  let percentage = ( good / total ) * 100
+
+  if(good != 0){
+    return (
+      <div>
+        <StatisticsLine text='good' value={good}/>
+        <StatisticsLine text='neutral' value={neutral}/>
+        <StatisticsLine text='bad' value={bad}/>
+        <StatisticsLine text='total' value={total}/>
+        <Average total={total} good={good}/>
+        <Percentage text='positive' percentage={percentage}/>
+      </div>
+    )
+  }
+  else if(good == 0 && (neutral != 0 || bad != 0)){
+    return (
+      <div>
+        <StatisticsLine text='good' value={good}/>
+        <StatisticsLine text='neutral' value={neutral}/>
+        <StatisticsLine text='bad' value={bad}/>
+        <StatisticsLine text='total' value={total}/>
+        <Average total={total} good={good}/>
+      </div>
+    )
+  }
+  else{
+    return (
+      <div>
+        <StatisticsLine text = "No feedback given."/>
+      </div>
+    )
+  }
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -34,56 +91,16 @@ const App = () => {
   const incrementNeutral =  () => {setNeutral(neutral + 1)}
   const incrementBad = () => {setBad(bad + 1)}
 
-  //Variables for (amount of clicks), (average), (perctange of positive responses).
-  const total = good+neutral+bad
-  const average = total/3
-  const positivePercentage = (good/total)*100
-
-  if(good != 0) {
-    return (
-      <div>
-        <Header title={"give feedback"}/>
-        <Button handleClick={incrementGood} text='good'/>
-        <Button handleClick={incrementNeutral} text='neutral'/>
-        <Button handleClick={incrementBad} text='bad'/>
-        <Header title={"statistics"}/>
-        <Display value={good} name='good'/>
-        <Display value={neutral} name='neutral'/>
-        <Display value={bad} name='bad'/>
-        <Display value={total} name='total:'/>
-        <Display value={average} name='average'/>
-        <Percentage percentage={positivePercentage} text="Positive:"/>
-      </div>
-    )
-  }
-  else if(good == 0 && (neutral != 0 || bad != 0)){
-    return (
-      <div>
-        <Header title={"give feedback"}/>
-        <Button handleClick={incrementGood} text='good'/>
-        <Button handleClick={incrementNeutral} text='neutral'/>
-        <Button handleClick={incrementBad} text='bad'/>
-        <Header title={"statistics"}/>
-        <Display value={good} name='good'/>
-        <Display value={neutral} name='neutral'/>
-        <Display value={bad} name='bad'/>
-        <Display value={total} name='total:'/>
-        <Display value={average} name='average'/>
+  return (
+    <div>
+      <Header title={"give feedback"}/>
+      <Button handleClick={incrementGood} text='good'/>
+      <Button handleClick={incrementNeutral} text='neutral'/>
+      <Button handleClick={incrementBad} text='bad'/>
+      <Header title={"statistics"}/>
+      <Statistics array={[good,neutral,bad]}/>
     </div>
-    )
-  }
-  else{
-    return(
-      <div>
-        <Header title={"give feedback"}/>
-        <Button handleClick={incrementGood} text='good'/>
-        <Button handleClick={incrementNeutral} text='neutral'/>
-        <Button handleClick={incrementBad} text='bad'/>
-        <Header title={"statistics"}/>
-        <Display name="No feedback given"/>
-      </div>
-    )
-  }
+  )
 }
 
 export default App
