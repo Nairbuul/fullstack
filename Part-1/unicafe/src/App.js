@@ -39,21 +39,51 @@ const App = () => {
   const average = total/3
   const positivePercentage = (good/total)*100
 
-  return (
-    <div>
-      <Header title={"give feedback"}/>
-      <Button handleClick={incrementGood} text='good'/>
-      <Button handleClick={incrementNeutral} text='neutral'/>
-      <Button handleClick={incrementBad} text='bad'/>
-      <Header title={"statistics"}/>
-      <Display value={good} name='good'/>
-      <Display value={neutral} name='neutral'/>
-      <Display value={bad} name='bad'/>
-      <Display value={total} name='total:'/>
-      <Display value={average} name='average'/>
-      <Percentage percentage={positivePercentage} text="Positive:"/>
+  if(good != 0) {
+    return (
+      <div>
+        <Header title={"give feedback"}/>
+        <Button handleClick={incrementGood} text='good'/>
+        <Button handleClick={incrementNeutral} text='neutral'/>
+        <Button handleClick={incrementBad} text='bad'/>
+        <Header title={"statistics"}/>
+        <Display value={good} name='good'/>
+        <Display value={neutral} name='neutral'/>
+        <Display value={bad} name='bad'/>
+        <Display value={total} name='total:'/>
+        <Display value={average} name='average'/>
+        <Percentage percentage={positivePercentage} text="Positive:"/>
+      </div>
+    )
+  }
+  else if(good == 0 && (neutral != 0 || bad != 0)){
+    return (
+      <div>
+        <Header title={"give feedback"}/>
+        <Button handleClick={incrementGood} text='good'/>
+        <Button handleClick={incrementNeutral} text='neutral'/>
+        <Button handleClick={incrementBad} text='bad'/>
+        <Header title={"statistics"}/>
+        <Display value={good} name='good'/>
+        <Display value={neutral} name='neutral'/>
+        <Display value={bad} name='bad'/>
+        <Display value={total} name='total:'/>
+        <Display value={average} name='average'/>
     </div>
-  )
+    )
+  }
+  else{
+    return(
+      <div>
+        <Header title={"give feedback"}/>
+        <Button handleClick={incrementGood} text='good'/>
+        <Button handleClick={incrementNeutral} text='neutral'/>
+        <Button handleClick={incrementBad} text='bad'/>
+        <Header title={"statistics"}/>
+        <Display name="No feedback given"/>
+      </div>
+    )
+  }
 }
 
 export default App
