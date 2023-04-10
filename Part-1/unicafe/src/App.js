@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-//Exercise 1.9) Unicafe Part 4
-//              Change your application to display statistics only once feed back has been gathered.
+//Exercise 1.11) Unicafe Part 6 (Final)
+//               Display the statistics in an HTML table, so that your applications looks like the given example.
 
 //Creating a component that'll create a header.
 const Header = ({title}) => (<h1>{title}</h1>)
