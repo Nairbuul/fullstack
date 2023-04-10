@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-//Exercise 1.12 Anecdotes Part 1
-//              Generate Random Numbers
+//Exercise 1.13 Anecdotes Part 3
+//              Expand your application so that you can vote for teh displayed annecdote.
 
 //Button component.
 const Button = ({handleClick, text}) => (<button onClick={handleClick}>{text}</button>)
@@ -17,11 +17,22 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
+
   const [selected, setSelected] = useState(0)
+  
+  //Setting the variable selected to a random number between the ranges of (0-7)
   const set = () => {
     setSelected(Math.floor(Math.random() * 8))
     console.log("Selected: ",selected)
+  }
+
+  //Array that stores votes. First number is the index of the anecdotes array.
+  const points = { 0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0}
+
+  //Function that'll increment the point array everytime the vote button is pressed.
+  const vote = () => {
+    points[selected] += 1
+    console.log(points)
   }
 
   return (
@@ -29,6 +40,7 @@ const App = () => {
       <div>
       {anecdotes[selected]}
       </div>
+      <Button handleClick={vote} text='vote'/>
       <Button handleClick={set} text='next anecdote'/>
     </div>
   )
