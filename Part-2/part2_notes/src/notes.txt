@@ -1,0 +1,25 @@
+FullStact Part 2.
+
+Part A.) Rendering a collection, modules.
+
+<Section 1 Console Log>
+    - Make sure to use console.log more often.
+
+<Section 2 Snippets> 
+    - Snippets help create code faster
+    - https://code.visualstudio.com/docs/editor/userdefinedsnippets#_creating-your-own-snippets
+
+<Section 3 JavaScript Arrays>
+    - Higher Order functions
+        - https://www.youtube.com/watch?v=BMUiFMZr7vk&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84
+    - Map
+        - https://www.youtube.com/watch?v=bCqtb-Z5YGQ&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=3
+    - Reduce Basics
+        - https://www.youtube.com/watch?v=Wl98eZpkp-c&t=31s 
+
+<Section 4 Event Handlers Revisted>
+    - Review Part-1 Notes.
+
+<Section 5 Rendering Collections>
+    - In this section we're gonna work on the 'frontend' (browser-side application logic)
+    
